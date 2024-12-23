@@ -13,7 +13,15 @@
                 this.load_factor = load_factor;
                 this.capacity = capacity;
             }
+            hashKey(ket){
+                let hashcode = 0;
+                const prime_number = 31;
+                for(let i = 0; i < key.length; i++){
+                    hashcode = prime_number + hashcode + key.charCodeAt(i);
+                }
 
+                return hashcode;
+            }
             
         }
     </script>
