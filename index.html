@@ -12,7 +12,7 @@
             constructor(load_factor, capacity){
                 this.load_factor = load_factor;
                 this.capacity = capacity;
-                this.bucket_array = [];
+                // this.bucket_obj = {};
             }
             hashKey(key){
                 let hashcode = 0;
@@ -21,14 +21,13 @@
                     hashcode = prime_number + hashcode + key.charCodeAt(i);
                     hashcode = hashcode % 16;
                 }
-                this.bucket_array.push(hashcode);
+                // this.bucket_obj.key
                 return hashcode;
             }
 
             set(key, value){
-                if(this.bucket_array.includes(key)){
-                    
-                }
+                let key = key;
+                let value = value;
             }
             
         }
