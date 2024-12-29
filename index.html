@@ -9,11 +9,14 @@
     
     <script>
         class hashmap{
+
             constructor(load_factor, capacity){
                 this.load_factor = load_factor;
                 this.capacity = capacity;
-                // this.bucket_obj = {};
+                this.buckets = [];
+
             }
+
             hashKey(key){
                 let hashcode = 0;
                 const prime_number = 31;
@@ -28,8 +31,64 @@
             set(key, value){
                 let key = key;
                 let value = value;
-                let hashcode = hashKey(key);
+                let set_values = [];
+                if(value !== null){
+                    let hashcode = hashKey(key);                    
+                    if(this.hashcode == hashcode){
+                        set_values.push(value);
+                    }
+                    let bucket = {};
+                    bucket.hashcode = hashcode;
+                    bucket.set_values = set_values;
+                    this.buckets.push(bucket);
+                }
+
+                return {hashcode, set_values};                
             }
+
+            get(key){
+                let hashcode = hashKey(key);
+                let values = set(key,null).set_values;
+                return values;
+            }
+
+            has(key){
+                let hashcode = hashKey(key);
+                let values = set(key,null).set_values;
+                if(values.length >= 1){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+
+            remove(key){
+                let hashcode = hashKey(key);
+                let buckets = this.buckets;
+                let count = 0;
+                let state = false;
+                for (bucket of buckets){
+                    if(bucket.hashcode == hashcode){
+                        state = true;
+                        break;
+                    }
+                    count = count + 1;
+                }
+                if(state){
+                    buckets.splice(count, 1);
+                }
+                this.buckets = buckets;
+                return state;
+            }
+
+            length(){
+                let buckets = this.buckets;
+                return buckets.length;
+            }
+
+            
+
+
             
         }
     </script>
