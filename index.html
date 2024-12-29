@@ -32,17 +32,31 @@
                 let key = key;
                 let value = value;
                 let set_values = [];
-                if(value !== null){
-                    let hashcode = hashKey(key);                    
-                    if(this.hashcode == hashcode){
-                        set_values.push(value);
-                    }
-                    let bucket = {};
-                    bucket.hashcode = hashcode;
-                    bucket.set_values = set_values;
-                    this.buckets.push(bucket);
-                }
+                let hashcode = hashKey(key);  
 
+                for(bucket of buckets){
+                    if(this.bucket.includes(hashcode)){
+                        // set_values.push(value);
+                        if((bucket.key == key && bucket.value == value)){
+                            /////////////////////////////////////////
+                        }else{                            
+                            let busket = {};
+                            busket.hashcode = hashcode;
+                            busket.key = key;
+                            set_values.push(value);
+                            busket.set_values = set_values;
+                            this.buckets.push(busket);
+                        }
+                    }else{
+                            let busket = {};
+                            busket.hashcode = hashcode;
+                            busket.key = key;
+                            let set_values = [];
+                            set_values.push(value);
+                            busket.set_values = set_values;
+                            this.buckets.push(busket);
+                    }
+                }                
                 return {hashcode, set_values};                
             }
 
@@ -86,7 +100,45 @@
                 return buckets.length;
             }
 
-            
+            clear(){
+                this.buckets = [];
+            }
+
+            keys(){
+                let buckets = this.buckets;
+                let keys = [];
+                for(bucket of buckets){
+                    if(!keys.includes(bucket.key)){
+                        keys.push(bucket.key);
+                    }
+                }
+                return keys;
+            }
+
+            values(){
+                let buckets = this.buckets;
+                let values = [];
+                for(bucket of buckets){
+                    values = values.concat(bucket.set_values);
+                }
+                return values;
+            }
+
+            entries(){
+                let bucket = this.buckets;
+                let entry_a = [];
+                for(bucket of buckets){
+                    let key = bucket.key;
+                    let values = bucket.set_values;
+                    entry_b = [];
+                    for(value of values){
+                        let enrty_c = [key,value];
+                        entry_b.push(enrty_c);
+                    }
+                    entry_a.push(entry_b);
+                }
+                return entry_a;
+            }
 
 
             
