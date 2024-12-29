@@ -38,7 +38,22 @@
                     if(this.bucket.includes(hashcode)){
                         // set_values.push(value);
                         if((bucket.key == key && bucket.value == value)){
-                            /////////////////////////////////////////
+                            let bucket_size = bucket.set_values.length;
+                            let buckets_size = buckets.length;
+                            let load_factor_a = bucket_size/buckets_size;
+                            let capacity_a = bucket_size;
+
+                            if(load_factor_a < this.load_factor && load_factor_a < 1 && load_factor_a > 0.75){
+                                let busket = {};
+                                busket.hashcode = hashcode;
+                                busket.key = key;
+                                set_values.push(value);
+                                busket.set_values = set_values;
+                                this.buckets.push(busket);
+                            }else{
+                                let buckets = this.buckets;
+                                return {hashcode, value};
+                            }
                         }else{                            
                             let busket = {};
                             busket.hashcode = hashcode;
