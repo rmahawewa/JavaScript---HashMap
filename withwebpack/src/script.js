@@ -87,25 +87,27 @@ export default class Hashmap{
 
     get(key){
         let index = key;
-        if (index < 0 || index >= buckets.length) {
+        if (index < 0 || index >= this.buckets.length) {
             throw new Error("Trying to access index out of bounds");
             return;
         }
 
-        let hashcode = hashKey(key);
-        let values = set(key,null).set_values;
+        let hashcode = this.hashKey(key);
+        // let values = this.set(key,null).set_values[0];
+        let values = this.set(key,null);
         return values;
     }
 
     has(key){
         let index = key;
-        if (index < 0 || index >= buckets.length) {
+        if (index < 0 || index >= this.buckets.length) {
             throw new Error("Trying to access index out of bounds");
             return;
         }
 
-        let hashcode = hashKey(key);
-        let values = set(key,null).set_values;
+        let hashcode = this.hashKey(key);
+        // let values = this.set(key,null).set_values;
+        let values = this.set(key,null);
         if(values.length >= 1){
             return true;
         }else{
@@ -114,11 +116,11 @@ export default class Hashmap{
     }
 
     remove(key){
-        let hashcode = hashKey(key);
+        let hashcode = this.hashKey(key);
         let buckets = this.buckets;
         let count = 0;
         let state = false;
-        for (bucket of buckets){
+        for (let bucket of buckets){
             if(bucket.hashcode == hashcode){
                 state = true;
                 break;
@@ -144,7 +146,7 @@ export default class Hashmap{
     keys(){
         let buckets = this.buckets;
         let keys = [];
-        for(bucket of buckets){
+        for(let bucket of buckets){
             if(!keys.includes(bucket.key)){
                 keys.push(bucket.key);
             }
@@ -155,20 +157,20 @@ export default class Hashmap{
     values(){
         let buckets = this.buckets;
         let values = [];
-        for(bucket of buckets){
+        for(let bucket of buckets){
             values = values.concat(bucket.set_values);
         }
         return values;
     }
 
     entries(){
-        let bucket = this.buckets;
+        let buckets = this.buckets;
         let entry_a = [];
-        for(bucket of buckets){
+        for(let bucket of buckets){
             let key = bucket.key;
             let values = bucket.set_values;
-            entry_b = [];
-            for(value of values){
+            let entry_b = [];
+            for(let value of values){
                 let enrty_c = [key,value];
                 entry_b.push(enrty_c);
             }
