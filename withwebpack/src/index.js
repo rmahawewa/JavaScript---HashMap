@@ -14,6 +14,8 @@ let set9 = test.set('ice cream', 'white');
 let set10 = test.set('jacket', 'blue');
 let set11 = test.set('kite', 'pink');
 let set12 = test.set('lion', 'golden');
+let set14 = test.set('moon', 'silver')
+
 // let set10 = test.set('a', 'b');
 // let set11 = test.set('c', 'd');
 // let set12 = test.set('e', 'f');
