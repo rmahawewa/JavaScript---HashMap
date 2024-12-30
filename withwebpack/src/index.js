@@ -14,8 +14,25 @@ let set9 = test.set('ice cream', 'white');
 let set10 = test.set('jacket', 'blue');
 let set11 = test.set('kite', 'pink');
 let set12 = test.set('lion', 'golden');
+// let set10 = test.set('a', 'b');
+// let set11 = test.set('c', 'd');
+// let set12 = test.set('e', 'f');
+// let set6 = test.set('a', 'b');
+// let set7 = test.set('c', 'd');
+// let set8 = test.set('e', 'f');
 
 
 
 console.log(set1);
-console.log(12345);
+console.log(set2);
+console.log(set3);
+console.log(set4);
+console.log(set5);
+console.log(set6);
+console.log(set7);
+console.log(set8);
+console.log(set9);
+console.log(set10);
+console.log(set11);
+console.log(set12);
+// console.log(12345);

@@ -22,11 +22,11 @@ export default class Hashmap{
         let hashcode = this.hashKey(key);  
         let buckets = this.buckets;
         let numb = 0;
-        console.log(buckets);
+        // console.log(buckets);
         if(buckets.length > 0){
             console.log(buckets.length);
             for(let bucket of buckets){
-                console.log(bucket);
+                // console.log(bucket);
                 if(bucket.hashcode == hashcode){
                     if((bucket.key == key && bucket.value == value)){
                         let bucket_size = bucket.set_values.length;
@@ -56,7 +56,7 @@ export default class Hashmap{
                         busket.set_values = set_values;
                         this.buckets.push(busket);
                         numb = 3;
-                        return {hashcode, value, numb};
+                        return {hashcode, key, value, numb};
                     }
                 }else{
                         let busket = {};
@@ -67,7 +67,7 @@ export default class Hashmap{
                         busket.set_values = set_values;
                         this.buckets.push(busket);
                         numb = 4;
-                        return {hashcode, value, numb};
+                        return {hashcode, key, value, numb};
                 }
             }
         }else{
@@ -79,10 +79,10 @@ export default class Hashmap{
                         busket.set_values = set_values;
                         this.buckets.push(busket);
                         numb = 5;
-                        return {hashcode, value, numb};
+                        return {hashcode, key, value, numb};
         }
         numb = 6;          
-        return {hashcode, set_values, numb};                
+        return {hashcode, key, set_values, numb};                
     }
 
     get(key){
