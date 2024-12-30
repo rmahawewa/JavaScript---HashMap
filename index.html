@@ -8,7 +8,7 @@
 <body>
     
     <script>
-        class hashmap{
+        class Hashmap{
 
             constructor(load_factor, capacity){
                 this.load_factor = load_factor;
@@ -29,59 +29,86 @@
             }
 
             set(key, value){
-                let key = key;
-                let value = value;
+                // let key = key;
+                // let value = value;
                 let set_values = [];
-                let hashcode = hashKey(key);  
+                let hashcode = this.hashKey(key);  
+                let buckets = this.buckets;
+                console.log(buckets);
+                if(buckets.length > 0){
+                    console.log(buckets.length);
+                    for(let bucket of buckets){
+                        console.log(bucket);
+                        // if((1==258)){
+                        if(bucket.hashcode == hashcode){
+                            // set_values.push(value);
+                            if((bucket.key == key && bucket.value == value)){
+                                let bucket_size = bucket.set_values.length;
+                                let buckets_size = buckets.length;
+                                let load_factor_a = bucket_size/buckets_size;
+                                let capacity_a = bucket_size;
 
-                for(bucket of buckets){
-                    if(this.bucket.includes(hashcode)){
-                        // set_values.push(value);
-                        if((bucket.key == key && bucket.value == value)){
-                            let bucket_size = bucket.set_values.length;
-                            let buckets_size = buckets.length;
-                            let load_factor_a = bucket_size/buckets_size;
-                            let capacity_a = bucket_size;
-
-                            if(load_factor_a < this.load_factor && load_factor_a < 1 && load_factor_a > 0.75){
+                                if(load_factor_a < this.load_factor && load_factor_a < 1 && load_factor_a > 0.75){
+                                    let busket = {};
+                                    busket.hashcode = hashcode;
+                                    busket.key = key;
+                                    set_values.push(value);
+                                    busket.set_values = set_values;
+                                    this.buckets.push(busket);
+                                }else{
+                                    let buckets = this.buckets;
+                                    return {hashcode, value};
+                                }
+                            }else{                            
                                 let busket = {};
                                 busket.hashcode = hashcode;
                                 busket.key = key;
                                 set_values.push(value);
                                 busket.set_values = set_values;
                                 this.buckets.push(busket);
-                            }else{
-                                let buckets = this.buckets;
-                                return {hashcode, value};
                             }
-                        }else{                            
-                            let busket = {};
-                            busket.hashcode = hashcode;
-                            busket.key = key;
-                            set_values.push(value);
-                            busket.set_values = set_values;
-                            this.buckets.push(busket);
+                        }else{
+                                let busket = {};
+                                busket.hashcode = hashcode;
+                                busket.key = key;
+                                let set_values = [];
+                                set_values.push(value);
+                                busket.set_values = set_values;
+                                this.buckets.push(busket);
                         }
-                    }else{
-                            let busket = {};
-                            busket.hashcode = hashcode;
-                            busket.key = key;
-                            let set_values = [];
-                            set_values.push(value);
-                            busket.set_values = set_values;
-                            this.buckets.push(busket);
                     }
-                }                
+                }else{
+                                let busket = {};
+                                busket.hashcode = hashcode;
+                                busket.key = key;
+                                let set_values = [];
+                                set_values.push(value);
+                                busket.set_values = set_values;
+                                this.buckets.push(busket);
+                }
+                                
                 return {hashcode, set_values};                
             }
 
             get(key){
+                let index = key;
+                if (index < 0 || index >= buckets.length) {
+                    throw new Error("Trying to access index out of bounds");
+                    return;
+                }
+
                 let hashcode = hashKey(key);
                 let values = set(key,null).set_values;
                 return values;
             }
 
             has(key){
+                let index = key;
+                if (index < 0 || index >= buckets.length) {
+                    throw new Error("Trying to access index out of bounds");
+                    return;
+                }
+
                 let hashcode = hashKey(key);
                 let values = set(key,null).set_values;
                 if(values.length >= 1){
@@ -158,6 +185,32 @@
 
             
         }
+
+        // const test = new Hashmap();
+
+        const test = new Hashmap(0.75, 1);
+
+        // let set1 = test.set('apple', 'red');
+        // let set2 = test.set('banana', 'yellow');
+        // let set3 = test.set('carrot', 'orange');
+        // let set4 = test.set('dog', 'brown');
+        // let set5 = test.set('elephant', 'gray');
+        // let set6 = test.set('frog', 'green');
+        // let set7 = test.set('grape', 'purple');
+        // let set8 = test.set('hat', 'black');
+        // let set9 = test.set('ice cream', 'white');
+        // let set10 = test.set('jacket', 'blue');
+        // let set11 = test.set('kite', 'pink');
+        // let set12 = test.set('lion', 'golden');
+        
+        // console.log(test.hashKey("apple"));
+        // console.log(test.hashKey("banana"));
+        console.log(test.hashKey("ice cream"));
+
+        let set9 = test.set('ice cream', 'white');
+        console.log(set9);
+
     </script>
+    <!-- <script src="./script1.js"></script> -->
 </body>
 </html>
