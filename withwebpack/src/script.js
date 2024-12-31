@@ -22,11 +22,9 @@ export default class Hashmap{
         let hashcode = this.hashKey(key);  
         let buckets = this.buckets;
         let numb = 0;
-        // console.log(buckets);
         if(buckets.length > 0){
             console.log(buckets.length);
             for(let bucket of buckets){
-                // console.log(bucket);
                 if(bucket.hashcode == hashcode){
                     if((bucket.key == key && bucket.value == value)){
                         let bucket_size = bucket.set_values.length;
