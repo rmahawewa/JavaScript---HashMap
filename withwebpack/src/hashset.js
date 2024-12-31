@@ -2,6 +2,7 @@ import Hashmap from "./script.js";
 
 export default class Hashset extends Hashmap{
     constructor(load_factor, capacity){
+        super();
         this.load_factor = load_factor;
         this.capacity = capacity;
         this.buckets = [];

@@ -1,4 +1,5 @@
 import Hashmap from "./script.js";
+import Hashset from "./hashset.js";
 
 const test = new Hashmap(0.75, 8);
 
@@ -58,3 +59,8 @@ console.log("values");
 console.log(test.values());
 console.log("entries");
 console.log(test.entries());
+
+let testnew = new Hashset(0.8, 8);
+
+console.log(testnew.set("peach"));
+console.log(testnew.set("peach"));
